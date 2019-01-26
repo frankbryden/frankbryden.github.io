@@ -30,7 +30,7 @@ var chart = new Chart(canvas, {
                 ticks : {
                     suggestedMin : 17,
                     suggestedMax : 28
-                },
+                }
                 id : 'temp',
                 type : 'linear',
                 position : 'right'
