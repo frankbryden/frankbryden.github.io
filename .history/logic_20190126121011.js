@@ -2,7 +2,7 @@ var canvas = document.getElementById("myChart");
 var chart = new Chart(canvas, {
     type: 'line',
     data : {
-        labels : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        labels : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
         datasets: [{
             label: 'Temperature',
             data: [12, 14, 3, 5, 2, 3, 12, 14, 24, 23, 23, 22],

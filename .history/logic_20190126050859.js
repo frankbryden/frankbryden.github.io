@@ -1,14 +1,7 @@
 var canvas = document.getElementById("myChart");
 var chart = new Chart(canvas, {
     type: 'line',
-    data : {
-        labels : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-        datasets: [{
-            label: 'Temperature',
-            data: [12, 14, 3, 5, 2, 3, 12, 14, 24, 23, 23, 22],
-            backgroundColor: "rgba(153,255,51,0.4)"
-        }]
-    }
+    data: [12, 19, 3, 5, 2, 3, 12, 14, 24, 23, 23, 22],
 });
 
 // Initialize Firebase
@@ -24,5 +17,6 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 database.ref('/temps/').once('value').then(function(snapshot) {
-    console.log(JSON.stringify(snapshot));
+    print(JSON.stringify(snapshot));
+    // ...
 });
