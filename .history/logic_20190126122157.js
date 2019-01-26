@@ -2,18 +2,11 @@ var canvas = document.getElementById("myChart");
 var chart = new Chart(canvas, {
     type: 'line',
     data : {
-        labels : [],
-        datasets : [{
-            label : 'Temperature',
-            data : [],
-            yAxisID : 'temp',
+        labels : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        datasets: [{
+            label: 'Temperature',
+            data: [12, 14, 3, 5, 2, 3, 12, 14, 24, 23, 23, 22],
             backgroundColor: "rgba(153,255,51,0.4)"
-        },
-        {
-            label : 'Humidity',
-            data : [],
-            yAxisID : 'humid',
-            backgroundColor: "rgba(230, 100, 65, 0.3)"
         }]
     },
     options : {
@@ -24,30 +17,9 @@ var chart = new Chart(canvas, {
                 bottom : 20,
                 top : 20
             }
-        },
-        scales : {
-            yAxes : [{
-                id : 'temp',
-                type : 'linear',
-                position : 'right'
-            }, {
-                id : 'humid',
-                type : 'linear',
-                position : 'left'
-            }]
         }
     }
 });
-
-let addData = function(data){
-    var t = data.t;
-    var h = data.h;
-    var time = new Date(data.time*1000);
-    chart.data.labels.push(time.getHours() + ":" + time.getMinutes());
-    chart.data.datasets[0].data.push(t);
-    chart.data.datasets[1].data.push(h);
-    chart.update();
-}
 
 // Initialize Firebase
 // TODO: Replace with your project's customized code snippet
@@ -63,5 +35,4 @@ firebase.initializeApp(config);
 var database = firebase.database();
 database.ref("temps/").on('child_added', function(snapshot) {
     console.log(snapshot.val());
-    addData(snapshot.val());
   });

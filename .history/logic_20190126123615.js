@@ -6,13 +6,11 @@ var chart = new Chart(canvas, {
         datasets : [{
             label : 'Temperature',
             data : [],
-            yAxisID : 'temp',
             backgroundColor: "rgba(153,255,51,0.4)"
         },
         {
             label : 'Humidity',
             data : [],
-            yAxisID : 'humid',
             backgroundColor: "rgba(230, 100, 65, 0.3)"
         }]
     },
@@ -29,11 +27,11 @@ var chart = new Chart(canvas, {
             yAxes : [{
                 id : 'temp',
                 type : 'linear',
-                position : 'right'
+                position : 'left'
             }, {
                 id : 'humid',
                 type : 'linear',
-                position : 'left'
+                position : 'right'
             }]
         }
     }

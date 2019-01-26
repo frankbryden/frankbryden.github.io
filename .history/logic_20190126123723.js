@@ -33,7 +33,7 @@ var chart = new Chart(canvas, {
             }, {
                 id : 'humid',
                 type : 'linear',
-                position : 'left'
+                position : 'right'
             }]
         }
     }

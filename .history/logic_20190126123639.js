@@ -29,11 +29,11 @@ var chart = new Chart(canvas, {
             yAxes : [{
                 id : 'temp',
                 type : 'linear',
-                position : 'right'
+                position : 'left'
             }, {
                 id : 'humid',
                 type : 'linear',
-                position : 'left'
+                position : 'right'
             }]
         }
     }
