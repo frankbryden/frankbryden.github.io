@@ -1,6 +1,7 @@
 const key = "b86a1d6ac9d6f96b9db60f5aeab11db9b4f09c92";
 const root = "https://api.github.com";
 const repoContents = "/repos/frankbryden/web-dev/contents/";
+const projectList = "/repos/frankbryden/frankbryden.github.io/contents/";//projects.txt";
 let myHeaders = new Headers();
 myHeaders.append('Content-Type', 'application/json');
 
@@ -36,29 +37,36 @@ class RepoFetcher {
     }
 
     async fetchData(){
-        const resp = await fetch(this.endpoint);
-        const data = await resp.json();
-
-        for (let entry of data){
+        //const resp = await fetch(this.endpoint);
+        //const data = await resp.json();
+        const projectList = this.fetchProjectList()
+        /*for (let entry of data){
             if (entry.type == "dir"){
                 //we need to request contents of outer directory - find the .html inside
                 let path = this.fetchRootHtmlPath(entry.path);
                 this.items.push(new Item(entry.name, path));
             }
-        }
+        }*/
     }
 
-    async fetchRootHtmlPath(path){
-        let contents = this.fetchDirectoryContents(path);
-        for (let file of contents){
+    async fetchProjectList(){
+        let contents = this.fetchContents(projectList);
+        console.log(contents);
+        for (let project of contents){
             if (file.name.endsWith(".html")){
                 return file.download_url;
             }
         }
     }
 
-    async fetchDirectoryContents(path){
-        const resp = await fetch(this.endpoint + path);
+    async fetchContents(path){
+        console.log("Fetching " + (root + path) + "...");
+        const resp = await fetch(root + path, {
+            mode: "no-cors",
+            headers: {
+                "ref": "dev"
+            }
+        });
         return await resp.json();
     }
 
