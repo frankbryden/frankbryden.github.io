@@ -1,2 +1,8 @@
 /repos/frankbryden/web-dev/contents/anim/anim
 /repos/frankbryden/web-dev/contents/blob/blob
+/repos/frankbryden/web-dev/contents/circAnim/circAnim
+/repos/frankbryden/web-dev/contents/circlesRot/circlesRot
+/repos/frankbryden/web-dev/contents/croco/croco
+/repos/frankbryden/web-dev/contents/ease/ease
+/repos/frankbryden/web-dev/contents/flower/flower
+/repos/frankbryden/web-dev/contents/hamiltonian/hamiltonian
