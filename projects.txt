@@ -1,3 +1,4 @@
+/repos/frankbryden/rosace/contents/rosace
 /repos/frankbryden/web-dev/contents/anim/anim
 /repos/frankbryden/web-dev/contents/blob/blob
 /repos/frankbryden/web-dev/contents/circAnim/circAnim
@@ -6,3 +7,4 @@
 /repos/frankbryden/web-dev/contents/ease/ease
 /repos/frankbryden/web-dev/contents/flower/flower
 /repos/frankbryden/web-dev/contents/hamiltonian/hamiltonian
+/repos/frankbryden/web-dev/contents/slots/slots
