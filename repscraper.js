@@ -22,10 +22,70 @@ class Item {
 class GUI {
     constructor (){
         this.repoFetcher = new RepoFetcher();
+        this.contentDiv = document.getElementById("content");
+        this.menuDiv = document.getElementById("menu");
     }
 
     init(){
-        this.repoFetcher.fetchData();
+        this.repoFetcher.fetchData().then(this.loadMenu.bind(this));
+        console.log(this.repoFetcher.items);
+    }
+
+    loadMenu(){
+        let itemID = 0;
+        let loadItem = this.loadItem.bind(this);
+        for (let item of this.repoFetcher.items){
+            //Create button
+            let button = document.createElement("button");
+            
+            //Attach event listener and set ID to a local copy of the incremental id var
+            let idCopy = itemID;
+            button.addEventListener('click', (e) => {
+                loadItem(idCopy);
+            });
+            button.id = item.title + "-btn";
+
+            //Set the button text
+            button.innerHTML = item.title;
+
+            //add the button class to style it
+            button.classList.add("button");
+            
+            //Add the button to the page
+            this.menuDiv.appendChild(button);
+            itemID += 1;
+        }
+    }
+
+    loadItem(itemID){
+        //clear the current element
+        while (this.contentDiv.firstChild) {
+            this.contentDiv.removeChild(this.contentDiv.firstChild);
+          }
+        
+        console.log(`Loading item with id ${itemID}`);
+        let item = this.repoFetcher.items[itemID];
+
+        //Create div to which we will attach our shadow root
+        let div = document.createElement("div");
+
+       
+
+        div.classList.add(item.title);
+        let shadowRoot = div.attachShadow({'mode': 'open'});
+        shadowRoot.innerHTML = item.data.html;
+        
+        this.contentDiv.appendChild(div);
+
+        //the script tag which will contain the script for the project.
+        //this element will be attached to the shadow
+        let script = document.createElement("script");
+        script.textContent = "(() => {" + item.data.js
+                    .replace(`document.getElementById("myCanvas")`, `document.querySelector("#content > div").shadowRoot.querySelector("#myCanvas")`)
+                    + "})();";
+        
+        shadowRoot.appendChild(script);
+        console.log(item);
     }
 }
 
@@ -51,6 +111,7 @@ class RepoFetcher {
                 "js": projectJS
             }));
         }
+        console.log(this.items);
         
     }
 
@@ -70,7 +131,6 @@ class RepoFetcher {
         console.log("try 2 : " + atob(contents));*/
         let resp = await fetch(root + path);
         let jsonData = await resp.json();
-        console.log(jsonData);
         let content = atob(jsonData.content.replace("\n", ""));
 
         return content;
@@ -87,5 +147,5 @@ const userAction = async () => {
     
   }
 
-let repoFetcher = new RepoFetcher();
-repoFetcher.fetchData();
+let gui = new GUI();
+gui.init();
